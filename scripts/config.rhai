@@ -17,7 +17,20 @@ let titles_method = [
 let titles = titles_model + titles_method + titles_type;
 let authors_array = ["Yann LeCun", "Geoffrey Hinton", "Yoshua Bengio"];
 
-let conferences = [
+let focus_venues = [
+    // Database / IR / data mining focus venues and common journal name variants.
+    "Proceedings of the ACM on Management of Data", "PACMMOD", "SIGMOD",
+    "Proceedings of the VLDB Endowment", "The VLDB Journal", "VLDB Journal",
+    "Very Large Data Bases", "PVLDB", "VLDBJ", "VLDB",
+    "IEEE International Conference on Data Engineering", "ICDE",
+    "SIGIR", "Knowledge Discovery and Data Mining", "KDD",
+    "ACM Transactions on Database Systems", "Transactions on Database Systems", "TODS",
+    "ACM Transactions on Information Systems", "Transactions on Information Systems", "TOIS",
+    "IEEE Transactions on Knowledge and Data Engineering",
+    "Transactions on Knowledge and Data Engineering", "TKDE"
+];
+
+let conferences = focus_venues + [
     // AI
     "AAAI", "AAMAS", "ACM MM", "AISTATS", "ALT", "CEC", "ECAI", "FUZZ IEEE", "GECCO", "ICANN", "ICAPS", "ICCBR", "ICONIP", "ICRA", "ICTAI", "IJCAI", "IJCNN", "IROS", "KR", "KSEM", "SIGGRAPH", "STOC", "UAI", "PPSN", "PRICAI", "TAAI",
     // CV
