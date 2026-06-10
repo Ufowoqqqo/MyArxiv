@@ -1,7 +1,20 @@
-let titles_type = ["Dataset", "Survey", "Review", "Overview"];
-let titles_model = ["BERT", "GPT", "Transformer"];
-let titles_method = ["Pre-train", "Pretrain", "Prompt", "Self-Supervised"];
-let titles =  titles_model + titles_method + titles_type;
+let titles_type = ["Dataset", "Survey", "Review", "Overview", "Benchmark"];
+let titles_model = [
+    "Hierarchical Navigable Small World", "HNSW", "DiskANN", "ScaNN", "FAISS",
+    "Vector Databases", "Vector Database", "Vector Index", "Vector Search",
+    "VQ-VAE", "\\bIVF\\b", "\\bPQ\\b", "\\bOPQ\\b"
+];
+let titles_method = [
+    "Approximate Nearest Neighbor Search", "Approximate Nearest Neighbors",
+    "Approximate Nearest Neighbor", "Nearest Neighbor Search",
+    "Nearest Neighbors", "Nearest Neighbor", "Similarity Search",
+    "Maximum Inner Product Search", "Embedding Search", "Dense Retrieval",
+    "Retrieval-Augmented Generation", "Vector Quantization", "Product Quantization",
+    "Residual Quantization", "Scalar Quantization", "Quantization",
+    "Vector Compression", "Quantized", "Quantizer", "\\bMIPS\\b",
+    "\\bANNS\\b", "\\bANN\\b", "\\bk[- ]?NN\\b", "\\bRAG\\b"
+];
+let titles = titles_model + titles_method + titles_type;
 let authors_array = ["Yann LeCun", "Geoffrey Hinton", "Yoshua Bengio"];
 
 let conferences = [
