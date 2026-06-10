@@ -15,7 +15,30 @@ let titles_method = [
     "\\bANNS\\b", "\\bANN\\b", "\\bk[- ]?NN\\b", "\\bRAG\\b"
 ];
 let titles = titles_model + titles_method + titles_type;
-let authors_array = ["Yann LeCun", "Geoffrey Hinton", "Yoshua Bengio"];
+let authors_array = [
+    // General ML anchors kept from the original config.
+    "Yann LeCun", "Geoffrey Hinton", "Yoshua Bengio",
+
+    // Vector DB / ANNS systems, benchmarks, and quantization authors.
+    "James Jie Pan", "Jianguo Wang", "Guoliang Li",
+    "Rentong Guo", "Xiaofan Luan", "Long Xiang", "Xiao Yan", "Xiaomeng Yi",
+    "Jigao Luo", "Qianya Cheng", "Jiarui Luo", "Zhenshan Cao", "Yanliang Qiao",
+    "Weizhi Xu", "Mengzhao Wang", "Yunjun Gao", "Zhangyang Peng", "Charles Xie",
+    "Suhas Jayaram Subramanya", "Rohan Kadekodi", "Ravishankar Krishnaswamy",
+    "Harsha Vardhan Simhadri", "Aditi Singh", "Qi Chen", "Bing Zhao",
+    "Haidong Wang", "Mingqin Li", "Chuanjie Liu", "Zengzhong Li", "Mao Yang",
+    "Jingdong Wang", "Matthijs Douze", "Alexandr Guzhva", "Chengqi Deng",
+    "Jeff Johnson", "Gergely Szilvasy", "Pierre-Emmanuel Mazaré", "Pierre-Emmanuel Mazare",
+    "Maria Lomeli", "Lucas Hosseini", "Hervé Jégou", "Herve Jegou",
+    "Yury Malkov", "Yu. A. Malkov", "Dmitry Yashunin", "D. A. Yashunin",
+    "George Williams", "Martin Aumüller", "Martin Aumueller", "Artem Babenko",
+    "Dmitry Baranchuk", "Amir Ingber", "Ruiqi Guo", "Sanjiv Kumar", "David Simcha",
+    "Liana Patel", "Peter Kraft", "Carlos Guestrin", "Matei Zaharia",
+    "Jianyang Gao", "Cheng Long", "Raymond Chi-Wing Wong", "Hiroyuki Ootomo",
+    "Akira Naruse", "Corey Nolet", "Tamas Feher", "Tamás Béla Fehér",
+    "Laxman Dhulipala", "Rajesh Jayaram", "Jakub Lacki", "Jakub Łącki",
+    "Prashant Pandey", "Maciej Besta", "Torsten Hoefler"
+];
 
 let focus_venues = [
     // Database / IR / data mining focus venues and common journal name variants.
