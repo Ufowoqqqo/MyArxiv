@@ -14,7 +14,19 @@ let titles_method = [
     "Vector Compression", "Quantized", "Quantizer", "\\bMIPS\\b",
     "\\bANNS\\b", "\\bANN\\b", "\\bk[- ]?NN\\b", "\\bRAG\\b"
 ];
-let titles = titles_model + titles_method + titles_type;
+let titles_agent_memory = [
+    "Agent Memory", "Agentic Memory", "Memory-Augmented Agent",
+    "Memory Augmented Agent", "Memory-Augmented Language Agent",
+    "Language Agent Memory", "Long-Term Memory", "Long Term Memory",
+    "Short-Term Memory", "Short Term Memory", "Working Memory",
+    "Episodic Memory", "Semantic Memory", "Procedural Memory",
+    "Memory Bank", "Memory Store", "Memory Retrieval", "Memory Management",
+    "Memory Consolidation", "Personalized Memory", "Continual Memory",
+    "Lifelong Agent", "Autonomous Agent", "Language Agent", "LLM Agent",
+    "LLM Agents", "AI Agent", "AI Agents", "Multi-Agent", "Multi Agent",
+    "Conversational Agent", "Generative Agents", "MemGPT", "\\bMem0\\b"
+];
+let titles = titles_model + titles_method + titles_agent_memory + titles_type;
 let authors_array = [
     // General ML anchors kept from the original config.
     "Yann LeCun", "Geoffrey Hinton", "Yoshua Bengio",
