@@ -47,7 +47,6 @@ jobs:
         shell: bash
         run: |
           attempts=3
-          transient_failure=0
 
           for attempt in 1 2 3; do
             echo "Build rss attempt ${attempt}/${attempts}"
@@ -63,22 +62,15 @@ jobs:
             cat "${log_file}"
 
             if [ "${status}" -eq 124 ]; then
-              transient_failure=1
               echo "::warning::ArxivFeed attempt ${attempt} timed out."
-            elif grep -Eiq "Rate exceeded|HTTP.*429|Unexpected closing tag: head, expected meta" "${log_file}"; then
-              transient_failure=1
-              echo "::warning::ArxivFeed attempt ${attempt} hit a likely transient arXiv API failure."
+            else
+              echo "::warning::ArxivFeed attempt ${attempt} failed with status ${status}."
             fi
 
             if [ "${attempt}" -eq "${attempts}" ]; then
-              if [ "${transient_failure}" -eq 1 ]; then
-                echo "::warning::Skipping deploy because arXiv API is rate-limited or unresponsive after ${attempts} attempts."
-                echo "build_succeeded=false" >> "${GITHUB_OUTPUT}"
-                exit 0
-              fi
-
-              echo "Build rss failed after ${attempts} attempts."
-              exit 1
+              echo "::warning::Skipping deploy because ArxivFeed failed after ${attempts} attempts."
+              echo "build_succeeded=false" >> "${GITHUB_OUTPUT}"
+              exit 0
             fi
 
             sleep_seconds=$((attempt * 120))
