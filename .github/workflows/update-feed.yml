@@ -43,7 +43,24 @@ jobs:
           tar -zxvf arxivfeed.tgz --strip-components 1 $(tar tf arxivfeed.tgz | grep /arxivfeed)
           chmod +x arxivfeed
       - name: Build rss
-        run: ./arxivfeed
+        shell: bash
+        run: |
+          attempts=4
+          for attempt in 1 2 3 4; do
+            echo "Build rss attempt ${attempt}/${attempts}"
+            if ./arxivfeed; then
+              exit 0
+            fi
+
+            if [ "${attempt}" -eq "${attempts}" ]; then
+              echo "Build rss failed after ${attempts} attempts."
+              exit 1
+            fi
+
+            sleep_seconds=$((attempt * 120))
+            echo "Build rss failed; retrying in ${sleep_seconds}s..."
+            sleep "${sleep_seconds}"
+          done
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
         with:
