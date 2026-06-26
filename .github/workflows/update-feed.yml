@@ -48,7 +48,7 @@ jobs:
           attempts=4
           for attempt in 1 2 3 4; do
             echo "Build rss attempt ${attempt}/${attempts}"
-            if ./arxivfeed; then
+            if timeout 180s ./arxivfeed; then
               exit 0
             fi
 
