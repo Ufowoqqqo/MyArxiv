@@ -26,7 +26,22 @@ let titles_agent_memory = [
     "LLM Agents", "AI Agent", "AI Agents", "Multi-Agent", "Multi Agent",
     "Conversational Agent", "Generative Agents", "MemGPT", "\\bMem0\\b"
 ];
-let titles = titles_model + titles_method + titles_agent_memory + titles_type;
+let titles_kv_cache = [
+    "\\bKV[- ]?Cache\\b", "\\bK[- ]?V[- ]?Cache\\b",
+    "Key[- ]?Value Cache", "Attention Cache", "Transformer Cache",
+    "Cache Compression", "Cache Quantization", "Cache Eviction",
+    "Cache Pruning", "Cache Offloading", "Cache Reuse", "Cache Sharing",
+    "Cache Merging", "Cache Scheduling", "Cache Management",
+    "Prefix Cache", "Prefix Caching", "Context Cache", "Context Caching",
+    "PagedAttention", "Paged Attention", "Paged KV Cache",
+    "Long-Context Inference", "Long Context Inference",
+    "LLM Inference", "LLM Serving", "LLM Decoding", "Token Streaming",
+    "Chunked Prefill", "Prefill", "Decode Scheduling", "Continuous Batching",
+    "vLLM", "SGLang", "StreamingLLM", "CacheGen", "FastGen",
+    "SnapKV", "PyramidKV", "KIVI", "\\bH2O\\b", "Attention Sink",
+    "Attention Sinks", "Heavy Hitter", "Heavy Hitters"
+];
+let titles = titles_model + titles_method + titles_agent_memory + titles_kv_cache + titles_type;
 let authors_array = [
     // General ML anchors kept from the original config.
     "Yann LeCun", "Geoffrey Hinton", "Yoshua Bengio",
