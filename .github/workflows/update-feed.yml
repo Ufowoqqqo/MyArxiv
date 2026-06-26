@@ -43,16 +43,40 @@ jobs:
           tar -zxvf arxivfeed.tgz --strip-components 1 $(tar tf arxivfeed.tgz | grep /arxivfeed)
           chmod +x arxivfeed
       - name: Build rss
+        id: build_rss
         shell: bash
         run: |
-          attempts=4
-          for attempt in 1 2 3 4; do
+          attempts=3
+          transient_failure=0
+
+          for attempt in 1 2 3; do
             echo "Build rss attempt ${attempt}/${attempts}"
-            if timeout 180s ./arxivfeed; then
+            log_file="arxivfeed-attempt-${attempt}.log"
+
+            if timeout 120s ./arxivfeed > "${log_file}" 2>&1; then
+              cat "${log_file}"
+              echo "build_succeeded=true" >> "${GITHUB_OUTPUT}"
               exit 0
             fi
 
+            status=$?
+            cat "${log_file}"
+
+            if [ "${status}" -eq 124 ]; then
+              transient_failure=1
+              echo "::warning::ArxivFeed attempt ${attempt} timed out."
+            elif grep -Eiq "Rate exceeded|HTTP.*429|Unexpected closing tag: head, expected meta" "${log_file}"; then
+              transient_failure=1
+              echo "::warning::ArxivFeed attempt ${attempt} hit a likely transient arXiv API failure."
+            fi
+
             if [ "${attempt}" -eq "${attempts}" ]; then
+              if [ "${transient_failure}" -eq 1 ]; then
+                echo "::warning::Skipping deploy because arXiv API is rate-limited or unresponsive after ${attempts} attempts."
+                echo "build_succeeded=false" >> "${GITHUB_OUTPUT}"
+                exit 0
+              fi
+
               echo "Build rss failed after ${attempts} attempts."
               exit 1
             fi
@@ -62,6 +86,7 @@ jobs:
             sleep "${sleep_seconds}"
           done
       - name: Deploy to GitHub Pages
+        if: steps.build_rss.outputs.build_succeeded == 'true'
         uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
