@@ -33,6 +33,7 @@ category = "cs.CL"
 title = "Computation and Language"
 
 [scripts]
+escape_html = "scripts/escape_html.rhai"
 highlight_title = "scripts/highlight_title.rhai"
 highlight_author = "scripts/highlight_author.rhai"
 highlight_conference = "scripts/highlight_conference.rhai"

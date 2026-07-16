@@ -8,6 +8,11 @@ if comment != () {
     let conference = conference.text;
 
     let conference = if conference != "" {
+        let conference = Regex("&").replace_all(conference, "&amp;");
+        let conference = Regex("<").replace_all(conference, "&lt;");
+        let conference = Regex(">").replace_all(conference, "&gt;");
+        let conference = Regex("\"").replace_all(conference, "&quot;");
+        let conference = Regex("'").replace_all(conference, "&#39;");
         "<span class=\"chip\">" + conference + "</span>"
     } else {
         ""
@@ -17,4 +22,3 @@ if comment != () {
 } else {
     ""
 }
-
