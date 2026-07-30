@@ -66,6 +66,7 @@ let authors_array = [
     "Laxman Dhulipala", "Rajesh Jayaram", "Jakub Lacki", "Jakub Łącki",
     "Prashant Pandey", "Maciej Besta", "Torsten Hoefler"
 ];
+let authors_lower = authors_array.map(|v| v.to_lower());
 
 let focus_venues = [
     // Database / IR / data mining focus venues and common journal name variants.
@@ -108,9 +109,6 @@ let conferences_rg = "(" + conferences_rg + ")([\\s'-]*\\d+)?";
 let start = titles.shift();
 let title_rg = titles.reduce(|sum, v| sum + "|" + v, start);
 
-let start = authors_array.shift();
-let authors_rg = authors_array.reduce(|sum, v| sum + "|" + v, start);
-
 export title_rg;
-export authors_rg;
+export authors_lower;
 export conferences_rg;

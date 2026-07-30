@@ -14,10 +14,9 @@ let title = Regex("\"").replace_all(title, "&quot;");
 let title = Regex("'").replace_all(title, "&#39;");
 
 let title_rg = RegexCaseInsensitive(`(?P<key>(${cfg::title_rg}))`);
-let authors_rg = RegexCaseInsensitive(`(?P<key>(${cfg::authors_rg}))`);
 let title = title_rg.replace_all(title,"<span class=\"highlight-title\">$key</span>");
 
-let authors = authors.map(|v|authors_rg.is_match(v));
+let authors = authors.map(|v|v.to_lower() in cfg::authors_lower);
 let title = if true in authors {
     "<span class=\"highlight-title\">★</span> " + title
 } else {
